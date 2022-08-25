@@ -34,6 +34,12 @@ jobs:
       id-token: write
 
     steps:
+      - name: Delete old package versions
+        uses: actions/delete-package-versions@v3
+        with: 
+          package-name: 'badminton-scraper'
+          min-versions-to-keep: 1
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
