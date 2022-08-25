@@ -6,12 +6,8 @@ name: Docker
 # documentation.
 
 on:
-  schedule:
-    - cron: '15 19 * * *'
   push:
     branches: [ "main" ]
-    # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "main" ]
 
@@ -34,9 +30,6 @@ jobs:
       id-token: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
       - name: Install cosign
