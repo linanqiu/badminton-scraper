@@ -88,8 +88,8 @@ namespace BadmintonScraperConsole
 
             var options = new EdgeOptions();
             options.AddArguments("--headless");
-            options.AddArguments("--disable-dev-shm-usage");
             options.AddArguments("--no-sandbox");
+
             using var driver = new EdgeDriver(options);
             var results = new List<(TimeSpan, int, DateTime)>();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
