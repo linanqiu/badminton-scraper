@@ -1,0 +1,9 @@
+bin/
+obj/
+.vscode/
+.vs/
+Dockerfile
+msedgedriver
+msedgedriver.exe
+# project
+run_local_token.bat

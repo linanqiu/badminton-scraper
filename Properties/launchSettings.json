@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BadmintonScraperConsole": {
+      "commandName": "Project",
+      "commandLineArgs": "-c 7 -m 300 -r"
+    }
+  }
+}
