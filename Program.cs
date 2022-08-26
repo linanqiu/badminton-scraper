@@ -213,7 +213,7 @@ namespace BadmintonScraperConsole
             }
             else
             {
-                var client = new SendGridClient(@"");
+                var client = new SendGridClient(sendGridApiKey);
                 var from = new EmailAddress(emailFrom, emailFrom);
                 var tos = emailsTo.Select(e => e.Trim()).Select(e => new EmailAddress(e, e)).ToList();
                 var content = body.ToString();
