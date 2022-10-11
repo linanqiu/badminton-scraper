@@ -180,6 +180,8 @@ namespace BadmintonScraperConsole
                 foreach (var (duration, court, time) in results)
                 {
                     body.AppendLine($"{duration:g},Court {court},{time:g}");
+                    body.AppendLine(Environment.NewLine);
+                    body.AppendLine(Environment.NewLine);
                 }
 
                 var subject = $"Badminton Scraping Results " +
