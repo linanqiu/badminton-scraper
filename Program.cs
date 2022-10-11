@@ -87,7 +87,7 @@ namespace BadmintonScraperConsole
                               $"courtsToExclude={string.Join(", ", courtsToExclude)}");
 
             var options = new EdgeOptions();
-            //options.AddArguments("--headless");
+            options.AddArguments("--headless");
             options.AddArguments("--no-sandbox");
 
             using var driver = new EdgeDriver(options);
