@@ -87,7 +87,7 @@ namespace BadmintonScraperConsole
                               $"courtsToExclude={string.Join(", ", courtsToExclude)}");
 
             var options = new EdgeOptions();
-            options.AddArguments("--headless");
+            //options.AddArguments("--headless");
             options.AddArguments("--no-sandbox");
 
             using var driver = new EdgeDriver(options);
@@ -105,7 +105,7 @@ namespace BadmintonScraperConsole
             var appointmentElements = wait.Until(d => d.FindElements(By.CssSelector(".select-item-box")))
                 .Select(e => new
                 {
-                    Element = e,
+                    Element = e.FindElement(By.CssSelector("button")),
                     Duration = e.FindElement(By.CssSelector(".duration")).Text.Trim().Replace("\\s+", " ").ConvertDuration()
                 })
                 .Where(e => e.Duration >= minDuration)
@@ -119,10 +119,10 @@ namespace BadmintonScraperConsole
                 appointmentElement.Element.Click();
 
                 var calendarElements = wait.Until(d => d.FindElements(By.CssSelector(".calendar-select-box")))
-                    .Where(e => e.Text != "Any available")
+                    .Where(e => e.FindElement(By.CssSelector("label")).Text != "Any available")
                     .Select(e => new
                     {
-                        Element = e,
+                        Element = e.FindElement(By.CssSelector("button")),
                         Court = e.FindElement(By.CssSelector("label")).Text.Trim().ConvertCourt()
                     })
                     .Where(e => !courtsToExclude.Contains(e.Court))
@@ -161,10 +161,15 @@ namespace BadmintonScraperConsole
                     }
 
                     Console.WriteLine($"duration={appointmentDuration:g} court={court} eligibleTimeSlots={times.Length} allTimeSlots={timesAll.Length}");
-                    calendarElement.Element.Click();
+                    var backButtonCalendars = driver.FindElements(By.CssSelector(".back-button")).Where(e => e.Text.ToLower().Trim() == "view all calendars").Single();
+                    backButtonCalendars.Click();
+                    //calendarElement.Element.Click();
+
                 }
 
-                appointmentElement.Element.Click();
+                var backButtonAppointments = driver.FindElements(By.CssSelector(".back-button")).Where(e => e.Text.ToLower().Trim() == "view all appointments").Single();
+                backButtonAppointments.Click();
+                //appointmentElement.Element.Click();
             }
 
             driver.Quit();
