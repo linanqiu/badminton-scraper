@@ -15,7 +15,7 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > mic
 WORKDIR /src
 
 RUN apt-get install -y zip \
-    && wget https://msedgedriver.azureedge.net/104.0.1293.63/edgedriver_linux64.zip -P ./ \
+    && wget https://msedgedriver.azureedge.net/106.0.1370.42/edgedriver_linux64.zip -P ./ \
     && unzip ./edgedriver_linux64.zip -d ./ \
     && rm ./edgedriver_linux64.zip
 
